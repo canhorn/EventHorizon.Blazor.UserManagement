@@ -1,0 +1,28 @@
+﻿@page "/users/{userId}/delete"
+@inherits UserDeletePageModel
+
+<a href="/users">Back to Users</a>
+
+<h1>Delete User?</h1>
+
+@if (!string.IsNullOrWhiteSpace(Message))
+{
+    <div>
+        @Message
+    </div>
+}
+
+<div>User Id: @UserModel.UserId</div>
+<div>User Email: @UserModel.Email</div>
+<div>User First Name: @UserModel.FirstName</div>
+<div>User Last Name: @UserModel.LastName</div>
+
+<button class="btn btn-danger"
+        @onclick="HandleDeleteUser">
+    Yes
+</button>
+<button class="btn btn-info"
+        @onclick="HandleBackToUsers">
+    No
+</button>
+

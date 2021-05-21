@@ -1,0 +1,65 @@
+﻿@page "/users"
+@inherits UsersPageModel
+
+<h1>User Management (Current UserId: @LoggedInUserId)</h1>
+
+<EditForm Model="NewUser">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Users)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Email</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>
+                        <a href="/users/@user.UserId">Edit</a> |
+                        <a href="/users/@user.UserId/delete">Delete</a>
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="2">
+                    <InputText class="form-control"
+                               @bind-Value="@NewUser.Email"
+                               placeholder="Email" />
+                </td>
+                <td>
+                    <InputText class="form-control"
+                               @bind-Value="@NewUser.FirstName"
+                               placeholder="First Name" />
+                </td>
+                <td>
+                    <InputText class="form-control"
+                               @bind-Value="@NewUser.LastName"
+                               placeholder="Last Name" />
+
+                </td>
+                <td>
+                    <button class="btn btn-primary"
+                            @onclick="HandleCreateNewUser">Create</button>
+                </td>
+            </tr>
+            @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+            {
+                <tr>
+                    <td colspan="4">
+                        @ErrorMessage
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</EditForm>
+

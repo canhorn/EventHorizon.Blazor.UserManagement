@@ -1,0 +1,43 @@
+﻿@page "/users/{userId}"
+@inherits UserEditPageModel
+
+<a href="/users">Back to Users</a>
+
+@if (UserId == LoggedinUserId)
+{
+    <h1>Edit Your Profile</h1>
+}
+else
+{
+    <h1>Edit User: @UserId</h1>
+}
+
+@if (!string.IsNullOrWhiteSpace(Message))
+{
+    <div>
+        @Message
+    </div>
+}
+
+<EditForm Model="EditUser">
+    <div class="form-group">
+        <InputText class="form-control"
+                   disabled="true"
+                   @bind-Value="@EditUser.Email" />
+    </div>
+    <div class="form-group">
+        <InputText class="form-control"
+                   @bind-Value="@EditUser.FirstName"
+                   placeholder="Fist Name" />
+    </div>
+    <div class="form-group">
+        <InputText class="form-control"
+                   @bind-Value="@EditUser.LastName"
+                   placeholder="Last Name" />
+
+    </div>
+    <button class="btn btn-primary"
+            @onclick="HandleUpdateUser">
+        Update
+    </button>
+</EditForm>
