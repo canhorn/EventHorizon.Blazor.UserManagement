@@ -1,6 +1,6 @@
 # About EventHorizon Blazor User Management
 
-This is a Sample project that has a focus on Real-Time updates, it just uses User Management as the UI pages that will be used to create.
+An Real-Time User Management UX showing off how SiganlR can be used in a Blazor Wasm application.
 
 ## Tech Used
 
